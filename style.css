@@ -17,6 +17,8 @@ html{
     --bg-color:#000000;
     --primary-text-color:#f4f4f4;
     --bg-button-color:#1a1a1a;
+    --bg-task-color:#2a2a2a;
+    --delete-color:#ff4d4d;
 
     /* Padding-Variable */
     --nav-padding:15px 30px;
@@ -72,10 +74,23 @@ section{
     gap: var(--padding-xl);
 }
 
+
+
+
 section .task-column{
     background-color: var(--bg-button-color);
     flex-grow: 1;
     padding: var(--padding-m);
+    display:flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    border-radius: var(--border-radius-m);
+    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+section .task-column.hover-over{
+    border: 2px solid var(--primary-text-color);
+    scale: 1.05;
 }
 
 section .task-column .heading{
@@ -84,4 +99,83 @@ section .task-column .heading{
     justify-content: space-between;
     align-items: center;
 }
+
+section .task-column .task{
+    background-color: var(--bg-task-color);
+    padding: var(--padding-m);
+    border-radius: var(--border-radius-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-s);
+    cursor: grab;
+}
+
+section .task-column .task button{
+    align-self: flex-end;
+    padding: var(--padding-s);
+    background-color: var(--delete-color);
+    padding: var(--padding-s) var(--padding-m);
+    border: none;
+    outline: none;
+    border-radius: var(--border-radius-m);
+    color: var(--primary-text-color);
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    /* backdrop-filter: blur(5px); */
+    /* background-color: rgba(61, 61, 61, 0.404); */
+}
+
+.modal.active{
+    display: flex;
+}
+
+.modal .center{
+    background-color: var(--bg-button-color);
+    padding: var(--padding-l);
+    border-radius: var(--border-radius-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    z-index: 10;
+}
+
+.modal .center input, .modal .center textarea, .modal .center select{
+    background-color: var(--bg-task-color);
+    border: none;
+    outline: none;
+    color: var(--primary-text-color);
+    padding: var(--padding-m);
+    border-radius: var(--border-radius-l);
+    font-weight: bold;
+}
+
+.modal .bg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(61,61,61,0.404);
+    backdrop-filter: blur(5px);
+}
+
+.modal .center button{
+    background-color: rgb(10, 62, 10);
+    border: none;
+    outline: none;
+    padding: var(--padding-m);
+    color: var(--primary-text-color);
+    cursor: pointer;
+    border-radius: var(--border-radius-m);
+    width: fit-content;
+    align-self: center;
+}
+
 
